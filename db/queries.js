@@ -5,19 +5,41 @@
  */
 const pool = require('./pool');
 
-async function getAllMessages() {
-  const { rows } = await pool.query('SELECT * FROM messages');
-  return rows;
+async function getAllPokemons() {
+  // const { rows } = await pool.query('SELECT * FROM messages');
+  return 'get all';
 }
 
-async function insertMessage(text, username) {
-  await pool.query(
-    'INSERT INTO messages(text,username,date) VALUES ($1, $2, NOW())',
-    [text, username]
-  );
+async function getAPokemonWithId() {
+  return 'get with id';
+}
+
+async function insertAPokemon(text, username) {
+  // await pool.query(
+  //   'INSERT INTO messages(text,username,date) VALUES ($1, $2, NOW())',
+  //   [text, username]
+  // );
+  return 'insert success';
+}
+async function updateAPokemonWithId(text, username) {
+  // await pool.query(
+  //   'Delete  From WHere  VALUES ($1, $2, NOW())',
+  //   [text, username]
+  // );
+  return 'update success';
+}
+async function deleteAPokemonWithId(text, username) {
+  // await pool.query(
+  //   'Delete  From WHere  VALUES ($1, $2, NOW())',
+  //   [text, username]
+  // );
+  return 'delete success';
 }
 
 module.exports = {
-  getAllMessages,
-  insertMessage,
+  getAllPokemons,
+  getAPokemonWithId,
+  insertAPokemon,
+  updateAPokemonWithId,
+  deleteAPokemonWithId,
 };
