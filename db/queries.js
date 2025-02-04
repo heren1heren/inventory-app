@@ -6,16 +6,18 @@
 const pool = require('./pool');
 
 async function getAllPokemons() {
-  // const { rows } = await pool.query('SELECT * FROM messages');
-  return 'get all';
+  const { rows } = await pool.query('SELECT * FROM pokemons');
+
+  return rows;
 }
 async function getAllTrainers() {
   // const { rows } = await pool.query('SELECT * FROM messages');
   return 'get all';
 }
 
-async function getAPokemonWithId() {
-  return 'get with id';
+async function getAPokemonWithId(id) {
+  const { rows } = await pool.query(`SELECT * FROM pokemons WHERE Id = ${id}`);
+  return rows;
 }
 async function getATrainerWithId() {
   return 'get with id';

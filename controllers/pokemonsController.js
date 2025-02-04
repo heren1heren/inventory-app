@@ -2,13 +2,11 @@ const db = require('../db/queries');
 
 async function getAll(req, res) {
   const data = await db.getAllPokemons();
-
-  res.send(`${data}`);
+  res.send(data);
 }
 async function getWithId(req, res) {
-  const data = await db.getAPokemonWithId();
-
-  res.send(`${data}`);
+  const data = await db.getAPokemonWithId(1);
+  res.send(data);
 }
 
 async function post(req, res) {
@@ -27,4 +25,10 @@ async function deleteWithId(req, res) {
   res.send(`${data}`);
 }
 
-module.exports = { getAll, getWithId, post, updateWithId, deleteWithId };
+module.exports = {
+  getAll,
+  getWithId,
+  post,
+  updateWithId,
+  deleteWithId,
+};
