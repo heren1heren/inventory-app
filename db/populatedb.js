@@ -4,12 +4,19 @@ const { Client } = require('pg');
 require('dotenv').config();
 
 const SQL = `
-CREATE TABLE IF NOT EXISTS usernames (
+CREATE TABLE IF NOT EXISTS pokemons (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  username VARCHAR ( 255 )
+  name VARCHAR ( 255 ),
+  img,
+pokemonType with foreign key references
+
+);
+CREATE TABLE IF NOT EXISTS trainers (
+  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR ( 255 )
 );
 
-INSERT INTO usernames (username) 
+INSERT INTO pokemons (username) 
 VALUES
   ('Bryan'),
   ('Odin'),
