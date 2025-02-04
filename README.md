@@ -10,3 +10,5 @@
 Any sufficient inventory app will have relations and constraints against its entities. Figure out these database particulars for your inventory app.
 Set up the routes and controllers you’re going to need.
 Create all of the ‘READ’ views (i.e. view category, and view item).
+
+## using picocss for styling yeahhhhh
