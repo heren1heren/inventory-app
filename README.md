@@ -1,5 +1,6 @@
 # Games inventory-app
 
+<<<<<<< HEAD
 1 Set up an Express project and a new PostgreSQL database.
 
 1 Before you begin, take a moment to write down all of the database tables and its fields you’ll need, as well as the relations between them For example:
@@ -12,3 +13,6 @@ Set up the routes and controllers you’re going to need.
 Create all of the ‘READ’ views (i.e. view category, and view item).
 
 ## using picocss for styling yeahhhhh
+=======
+Feb 3 : 11: 40 am -> 12:04 pm
+>>>>>>> cb77df3a2e3522a149f86e57d180496ba2ee69bb
