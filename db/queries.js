@@ -9,12 +9,26 @@ async function getAllPokemons() {
   // const { rows } = await pool.query('SELECT * FROM messages');
   return 'get all';
 }
+async function getAllTrainers() {
+  // const { rows } = await pool.query('SELECT * FROM messages');
+  return 'get all';
+}
 
 async function getAPokemonWithId() {
   return 'get with id';
 }
+async function getATrainerWithId() {
+  return 'get with id';
+}
 
 async function insertAPokemon(text, username) {
+  // await pool.query(
+  //   'INSERT INTO messages(text,username,date) VALUES ($1, $2, NOW())',
+  //   [text, username]
+  // );
+  return 'insert success';
+}
+async function insertATrainer(text, username) {
   // await pool.query(
   //   'INSERT INTO messages(text,username,date) VALUES ($1, $2, NOW())',
   //   [text, username]
@@ -28,6 +42,13 @@ async function updateAPokemonWithId(text, username) {
   // );
   return 'update success';
 }
+async function updateATrainerWithId(text, username) {
+  // await pool.query(
+  //   'Delete  From WHere  VALUES ($1, $2, NOW())',
+  //   [text, username]
+  // );
+  return 'update success';
+}
 async function deleteAPokemonWithId(text, username) {
   // await pool.query(
   //   'Delete  From WHere  VALUES ($1, $2, NOW())',
@@ -35,11 +56,23 @@ async function deleteAPokemonWithId(text, username) {
   // );
   return 'delete success';
 }
-
+async function deleteATrainerWithId(text, username) {
+  // await pool.query(
+  //   'Delete  From WHere  VALUES ($1, $2, NOW())',
+  //   [text, username]
+  // );
+  return 'delete success';
+}
 module.exports = {
   getAllPokemons,
   getAPokemonWithId,
   insertAPokemon,
   updateAPokemonWithId,
   deleteAPokemonWithId,
+
+  getAllTrainers,
+  getATrainerWithId,
+  insertATrainer,
+  updateATrainerWithId,
+  deleteATrainerWithId,
 };

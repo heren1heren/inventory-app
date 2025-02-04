@@ -1,15 +1,12 @@
-// what data I want to store?
-/\_
 pokemon inventory app.
 
 tables:
+
 pokemons {
 id is the primary key
 name,
-img,
+img, // how to store img path inside the database?
 pokemonType with foreign key references
-
-<!-- pokemonAttributes, -->
 
 }
 

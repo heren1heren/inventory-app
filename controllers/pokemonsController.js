@@ -1,30 +1,30 @@
 const db = require('../db/queries');
 
 async function getAll(req, res) {
-  const data = await db.getAllMessages();
+  const data = await db.getAllPokemons();
 
-  res.render('get all');
+  res.send(`${data}`);
 }
 async function getWithId(req, res) {
-  const data = await db.getAllMessages();
+  const data = await db.getAPokemonWithId();
 
-  res.render('get with id');
+  res.send(`${data}`);
 }
 
 async function post(req, res) {
-  const data = await db.getAllMessages();
+  const data = await db.InsertAPokemon();
 
-  res.render('posted');
+  res.send(`${data}`);
 }
 async function updateWithId(req, res) {
-  const data = await db.getAllMessages();
+  const data = await db.updateAPokemonWithId();
 
-  res.render('updated');
+  res.send(`${data}`);
 }
 async function deleteWithId(req, res) {
-  const data = await db.getAllMessages();
+  const data = await db.deleteAPokemonWithId();
 
-  res.render('deleted');
+  res.send(`${data}`);
 }
 
 module.exports = { getAll, getWithId, post, updateWithId, deleteWithId };
