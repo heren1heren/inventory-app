@@ -1,42 +1,31 @@
-// specify what type of data does the user table has ?
-/*
-how many tables does the data base has?
- one table: messages {
-    index
-    text
-    user
-    date
- }
-*/
+// ? why do I need to run this file first?
 
 const { Client } = require('pg');
+require('dotenv').config();
 
 const SQL = `
-DROP TABLE IF EXISTS messages;
-
-CREATE TABLE IF NOT EXISTS messages (
+CREATE TABLE IF NOT EXISTS usernames (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  text VARCHAR ( 255 ),
-  username VARCHAR ( 255 ),
-  date DATE
-  
-
+  username VARCHAR ( 255 )
 );
 
-INSERT INTO messages (text, username, date) 
+INSERT INTO usernames (username) 
 VALUES
-  ('hello there','heren' , NOW()),
-  ('hi there','cow' , NOW()),
-  ('greeting!', 'chicken' , NOW());
-
+  ('Bryan'),
+  ('Odin'),
+  ('Damon');
 `;
 
 async function main() {
   console.log('seeding...');
+  // connection process
   const client = new Client({
-    connectionString: 'postgresql://heren:aoeu&[{}@localhost:5432/top_users',
+    connectionString: `postgresql://${process.env.USER}:${process.env.PASSWORD}@localhost:5432/top_users`,
   });
+
   await client.connect();
+
+  // query code
   await client.query(SQL);
   await client.end();
   console.log('done');
