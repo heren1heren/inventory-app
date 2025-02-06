@@ -17,12 +17,17 @@
 
 - [x] implement database query functions and testing each routes ( this is not a good way to do a project since I still don't know where to use each route or maybe these routes are not even neccessary)
 
-- [ ] add views - Create all of the ‘READ’ views (i.e. view category, and view item).
-- [ ] render main page
-- [] render a page with db.query
-- [ ] implement dark and white theme with
-- [ ] render
-- [ ] add picocss inside the views
+# Feb 6:
 
+- [x] add picocss inside the views
+- [x] render main page
+- [ ] creating each card deck of each category as a view.ejs
+- [ ] including each card deck inside the main page based on
+      req.query
+
+  - [ ] render them dynamically
+  - [ ] render them with database
+
+- [ ] implement dark and white theme with
 - [ ] ...
 - [ ] Write the next check list

@@ -14,9 +14,60 @@
   </head>
   <body>
     <main class="container">
-      <header>I am the header that is for navigation</header>
-      <section><h1>I am a main page with picocss</h1></section>
-      <footer>I am a dummy footer with icons and info...</footer>
+      <header>
+        <nav>
+          <ul>
+            <li><strong>Pokemon Inventory</strong></li>
+          </ul>
+          <ul>
+            <li><a href="/pokemons/all">Add </a></li>
+            <li><a href="/trainers/all">Trainers</a></li>
+          </ul>
+        </nav>
+      </header>
+      <div>
+        <form>
+          <fieldset role="group">
+            <select name="category" aria-label="Select a category" required>
+              <option selected disabled value="">
+                Select your favorite cuisine...
+              </option>
+              <option>Pokemons</option>
+              <option>Trainers</option>
+              <option>Pokemon Types</option>
+            </select>
+            <input type="submit" value="Look up" />
+          </fieldset>
+        </form>
+
+        <div class="grid">
+          <article>
+            <header>card title</header>
+            <img src="img/pokemons/charmander.png" alt="" />
+            <p>
+              description Lorem ipsum dolor sit, amet consectetur adipisicing
+              elit. Ratione, debitis.
+            </p>
+          </article>
+          <article>
+            <header>card title</header>
+            <img src="img/pokemons/charmander.png" alt="" />
+            <p>
+              description Lorem ipsum dolor sit, amet consectetur adipisicing
+              elit. Ratione, debitis.
+            </p>
+          </article>
+          <article>
+            <header>card title</header>
+            <img src="img/pokemons/charmander.png" alt="" />
+            <p>
+              description Lorem ipsum dolor sit, amet consectetur adipisicing
+              elit. Ratione, debitis.
+            </p>
+          </article>
+        </div>
+      </div>
+      <footer>&copy; This is a Top exercise 2025</footer>
     </main>
   </body>
 </html>

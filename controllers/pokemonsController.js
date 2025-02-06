@@ -2,7 +2,7 @@ const db = require('../db/queries');
 
 async function getAll(req, res) {
   const data = await db.getAllPokemons();
-  res.send(data);
+  res.render('category', { data });
 }
 async function getWithId(req, res) {
   const data = await db.getAPokemonWithId(1);
