@@ -1,3 +1,31 @@
 /* body {
     background-color: greenyellow;
 } */
+a {
+    text-decoration: none;
+}
+article {
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+article p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+img {
+    width: 100%;
+}
+img.trainer {
+    height: 600px;
+}
+img.pokemon-type {
+    height: 250px;
+}
+
+button {
+    margin-top: auto;
+}

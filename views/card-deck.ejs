@@ -1,0 +1,14 @@
+<div class="grid">
+  <div class="column">
+    <% for(let i = 0; i < items.length; i++) { %> <% if(i === 0 || (i % 3) ===
+    1) { %> <%- include(`card`, { item: items[i] }); %> <% } %> <% } %>
+  </div>
+  <div class="column">
+    <% for(let i = 0; i < items.length; i++) { %> <% if((i % 3) === 2) { %> <%-
+    include(`card`, { item: items[i] }); %> <% } %> <% } %>
+  </div>
+  <div class="column">
+    <% for(let i = 0; i < items.length; i++) { %> <% if((i % 3) === 0 && i !==
+    0) { %> <%- include(`card`, { item: items[i] }); %> <% } %> <% } %>
+  </div>
+</div>

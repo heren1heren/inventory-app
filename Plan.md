@@ -21,13 +21,16 @@
 
 - [x] add picocss inside the views
 - [x] render main page
-- [ ] creating each card deck of each category as a view.ejs
-- [ ] including each card deck inside the main page based on
+- [x] creating each card deck of each category as a view.ejs
+- [x] including each card deck inside the main page based on
       req.query
 
-  - [ ] render them dynamically
-  - [ ] render them with database
+  - [x] render them dynamically
+  - [x] render them with database
 
+- [x] manage card height by adding card min -height
 - [ ] implement dark and white theme with
-- [ ] ...
+- [ ] Creating add form
+- [ ] Creating edit form views
+- [ ] Creating detail views
 - [ ] Write the next check list

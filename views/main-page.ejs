@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,6 +11,7 @@
 
     <link href="styles.css" rel="stylesheet" type="text/css" />
     <title>Pokemon inventory app</title>
+    <script defer src="main.js"></script>
   </head>
   <body>
     <main class="container">
@@ -19,9 +20,12 @@
           <ul>
             <li><strong>Pokemon Inventory</strong></li>
           </ul>
+
           <ul>
             <li><a href="/pokemons/all">Add </a></li>
-            <li><a href="/trainers/all">Trainers</a></li>
+            <label>
+              <input type="checkbox" role="switch" id="themeSwitch" />
+            </label>
           </ul>
         </nav>
       </header>
@@ -29,43 +33,15 @@
         <form>
           <fieldset role="group">
             <select name="category" aria-label="Select a category" required>
-              <option selected disabled value="">
-                Select your favorite cuisine...
-              </option>
+              <option selected disabled value="">Select a category</option>
               <option>Pokemons</option>
               <option>Trainers</option>
-              <option>Pokemon Types</option>
+              <option value="PokemonTypes">Pokemon Types</option>
             </select>
             <input type="submit" value="Look up" />
           </fieldset>
         </form>
-
-        <div class="grid">
-          <article>
-            <header>card title</header>
-            <img src="img/pokemons/charmander.png" alt="" />
-            <p>
-              description Lorem ipsum dolor sit, amet consectetur adipisicing
-              elit. Ratione, debitis.
-            </p>
-          </article>
-          <article>
-            <header>card title</header>
-            <img src="img/pokemons/charmander.png" alt="" />
-            <p>
-              description Lorem ipsum dolor sit, amet consectetur adipisicing
-              elit. Ratione, debitis.
-            </p>
-          </article>
-          <article>
-            <header>card title</header>
-            <img src="img/pokemons/charmander.png" alt="" />
-            <p>
-              description Lorem ipsum dolor sit, amet consectetur adipisicing
-              elit. Ratione, debitis.
-            </p>
-          </article>
-        </div>
+        <%- include('card-deck') %>
       </div>
       <footer>&copy; This is a Top exercise 2025</footer>
     </main>

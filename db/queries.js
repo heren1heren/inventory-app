@@ -3,11 +3,16 @@
  * post query
  *
  */
-const { Result } = require('express-validator');
+
 const pool = require('./pool');
 
 async function getAllPokemons() {
   const { rows } = await pool.query('SELECT * FROM Pokemons');
+
+  return rows;
+}
+async function getAllPokemonTypes() {
+  const { rows } = await pool.query('SELECT * FROM PokemonTypes');
 
   return rows;
 }
@@ -136,4 +141,6 @@ module.exports = {
   insertATrainer,
   updateATrainerWithId,
   deleteATrainerWithId,
+
+  getAllPokemonTypes,
 };
