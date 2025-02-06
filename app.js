@@ -3,6 +3,7 @@ const path = require('node:path');
 const pokemonsRouter = require('./routes/pokemonsRouter');
 const trainersRouter = require('./routes/trainersRouter');
 const indexRouter = require('./routes/indexRouter');
+const pokemonTypesRouter = require('./routes/pokemonTypesRouter');
 
 const app = express();
 const assetsPath = path.join(__dirname, 'public'); // using images on web server here
@@ -14,7 +15,7 @@ app.use(express.static(assetsPath));
 app.use('/', indexRouter);
 app.use('/pokemons', pokemonsRouter);
 app.use('/trainers', trainersRouter);
-
+app.use('/pokemonTypes', pokemonTypesRouter);
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App listening on port: ${port}`);

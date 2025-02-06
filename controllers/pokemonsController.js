@@ -1,12 +1,11 @@
 const db = require('../db/queries');
 
-async function getAll(req, res) {
-  const data = await db.getAllPokemons();
-  res.render('category', { data });
-}
 async function getWithId(req, res) {
-  const data = await db.getAPokemonWithId(1);
-  res.send(data);
+  const { id } = req.params;
+  const item = await db.getAPokemonWithId(id);
+  console.log(item);
+
+  res.render('pokemonDetail', { item });
 }
 
 async function post(req, res) {
@@ -32,7 +31,6 @@ async function deleteWithId(req, res) {
 }
 
 module.exports = {
-  getAll,
   getWithId,
   post,
   updateWithId,

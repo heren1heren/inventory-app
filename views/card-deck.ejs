@@ -1,5 +1,6 @@
 <div class="grid">
   <div class="column">
+    <!-- -- logic adding is wrong -->
     <% for(let i = 0; i < items.length; i++) { %> <% if(i === 0 || (i % 3) ===
     1) { %> <%- include(`card`, { item: items[i] }); %> <% } %> <% } %>
   </div>

@@ -21,18 +21,106 @@ async function getAllTrainers() {
   return rows;
 }
 
-async function getAPokemonWithId(id) {
-  const { rows } = await pool.query(`SELECT * FROM pokemons WHERE Id = $1`, [
-    id,
-  ]);
-  return rows;
-}
-async function getATrainerWithId() {
-  const { rows } = await pool.query('SELECT * FROM Pokemons');
+const getAPokemonWithId = async (id) => {
+  // Validate the id parameter
+  if (!id) {
+    throw new Error('Invalid ID provided');
+  }
 
-  return rows;
-}
+  try {
+    const { rows } = await pool.query(
+      `SELECT 
+          p.pokemonTypeId,
+          p.trainerId,
+          p.imgUrl,
+          p.id,
+          p.description, 
+          p.name AS pokemonName, 
+          t.name AS trainerName, 
+          pt.name AS type 
+       FROM 
+          pokemons AS p 
+       INNER JOIN 
+          trainers AS t ON p.trainerId = t.id 
+       INNER JOIN 
+          pokemonTypes AS pt ON p.pokemonTypeId = pt.id 
+       WHERE 
+          p.id = $1`,
+      [id]
+    );
+    console.log(rows);
+    // Check if any rows were returned
+    if (rows.length === 0) {
+      throw new Error('No Pokémon found with the provided ID');
+    }
 
+    return rows[0]; // Return the first row (assuming ID is unique)
+  } catch (error) {
+    console.error('Error fetching Pokémon details:', error);
+    throw error; // Rethrow the error after logging it
+  }
+};
+async function getATrainerWithId(id) {
+  if (!id) {
+    throw new Error('Invalid ID provided');
+  }
+  try {
+    //todo: fix the query to work with more than 1 pokemon
+    const { rows } = await pool.query(
+      `SELECT 
+      t.name AS trainername,
+      t.description,
+      t.age,
+      t.imgurl,
+      t.id,
+      ARRAY_AGG(p.name) AS pokemons, 
+      ARRAY_AGG(p.id) As pokemonids,
+      COUNT(p.id) AS pokemon_count 
+  FROM trainers AS t
+  LEFT JOIN pokemons AS p ON t.id = p.trainerId 
+  WHERE t.id = $1
+  GROUP BY t.id`, // without this, the query will break
+      [id]
+    );
+    console.log(rows);
+    // Check if any rows were returned
+    if (rows.length === 0) {
+      throw new Error('No Pokémon found with the provided ID');
+    }
+
+    return rows[0];
+  } catch (error) {
+    console.error('Error fetching Trainer details:', error);
+    throw error;
+  }
+}
+const getAPokemonTypeWithId = async (id) => {
+  // Validate the id parameter
+  if (!id) {
+    throw new Error('Invalid ID provided');
+  }
+
+  try {
+    const { rows } = await pool.query(
+      `SELECT 
+     *       FROM 
+          pokemontypes AS pt
+       WHERE 
+          pt.id = $1`,
+      [id]
+    );
+    console.log(rows);
+    // Check if any rows were returned
+    if (rows.length === 0) {
+      throw new Error('No Pokémon type found with the provided ID');
+    }
+
+    return rows[0]; // Return the first row (assuming ID is unique)
+  } catch (error) {
+    console.error('Error fetching Pokémon details:', error);
+    throw error; // Rethrow the error after logging it
+  }
+};
 async function insertAPokemon(name, imgUrl, pokemonTypeId) {
   // pokemonTypeId should be determine automatically
   try {
@@ -143,4 +231,5 @@ module.exports = {
   deleteATrainerWithId,
 
   getAllPokemonTypes,
+  getAPokemonTypeWithId,
 };

@@ -1,15 +1,10 @@
 const db = require('../db/queries');
 
-async function getAll(req, res) {
-  const data = await db.getAllTrainers();
-
-  res.send(`${data}`);
-}
 async function getWithId(req, res) {
   const { id } = req.params;
-  const data = await db.getATrainerWithId(id);
+  const item = await db.getATrainerWithId(id);
 
-  res.send(`${data}`);
+  res.render('trainerDetail', { item });
 }
 
 async function post(req, res) {
@@ -33,4 +28,4 @@ async function deleteWithId(req, res) {
   res.send(`${data}`);
 }
 
-module.exports = { getAll, getWithId, post, updateWithId, deleteWithId };
+module.exports = { getWithId, post, updateWithId, deleteWithId };

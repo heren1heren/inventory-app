@@ -9,20 +9,26 @@
     />
     <!-- <link href="public/styles.css" rel="stylesheet" type="text/css" />  this will not work-->
 
-    <link href="styles.css" rel="stylesheet" type="text/css" />
-    <title>Pokemon inventory app</title>
-    <script defer src="main.js"></script>
+    <title>
+      <%= item.name[0].toUpperCase() + item.name.slice(1,item.name.length) %>
+    </title>
+    <script defer src="/main.js"></script>
   </head>
   <body>
     <main class="container">
       <header>
         <nav>
           <ul>
-            <li><strong>Pokemon Inventory</strong></li>
+            <li>
+              <strong></strong>
+                <%= item.name[0].toUpperCase() +
+                item.name.slice(1,item.name.length) %></strong
+              >
+            </li>
           </ul>
 
           <ul>
-            <li><a href="/pokemons/all">Add Items </a></li>
+            <a href="/" style="text-decoration: none"> Home Page</a>
             <span>Theme:</span>
             <label>
               <input type="checkbox" role="switch" id="themeSwitch" />
@@ -31,18 +37,16 @@
         </nav>
       </header>
       <div>
-        <form>
-          <fieldset role="group">
-            <select name="category" aria-label="Select a category" required>
-              <option selected disabled value="">Select a category</option>
-              <option value="pokemons">Pokemons</option>
-              <option value="trainers">Trainers</option>
-              <option value="pokemonTypes">Pokemon Types</option>
-            </select>
-            <input type="submit" value="Look up" />
-          </fieldset>
-        </form>
-        <%- include('card-deck') %>
+        <article class="grid">
+          <img src="<%= item.imgurl %>" alt="" />
+          <div>
+            <p><%= item.description %></p>
+
+            <button class="contrast">
+              <a href="" style="text-decoration: none">Delete</a>
+            </button>
+          </div>
+        </article>
       </div>
       <footer>&copy; This is a Top exercise 2025</footer>
     </main>

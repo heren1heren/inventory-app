@@ -6,5 +6,8 @@
     <img class="<%=imgClass%>" src="<%=item.imgurl %>" alt="" />
     <p><%= item.description.slice(0, 150- 3) + '...';%></p>
   </main>
-  <button class="outline"><a href="#">Details</a></button>
+
+  <button class="outline">
+    <a href="<%= `${category}/${item.id} `%>">Details</a>
+  </button>
 </article>

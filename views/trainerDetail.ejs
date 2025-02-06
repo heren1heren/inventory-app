@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <!-- <link href="public/styles.css" rel="stylesheet" type="text/css" />  this will not work-->
+
+    <title>
+      <%= item.trainername[0].toUpperCase() +
+      item.trainername.slice(1,item.trainername.length) %>
+    </title>
+    <script defer src="/main.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <nav>
+          <ul>
+            <li>
+              <strong
+                ><%= item.trainername[0].toUpperCase() +
+                item.trainername.slice(1,item.trainername.length) %></strong
+              >
+            </li>
+          </ul>
+
+          <ul>
+            <a href="/" style="text-decoration: none"> Home Page</a>
+            <span>Theme:</span>
+            <label>
+              <input type="checkbox" role="switch" id="themeSwitch" />
+            </label>
+          </ul>
+        </nav>
+      </header>
+      <div>
+        <article class="grid">
+          <img src="<%= item.imgurl %>" alt="" />
+          <div>
+            <p><%= item.description %></p>
+
+            <p>Age: <%= item.age %></p>
+            <% if (item.pokemons && item.pokemons.length > 0) { %>
+            <p>
+              Owned Pokemon: <% for(let i = 0; i < item.pokemons.length; i++) {
+              %>
+              <span>
+                <a href="/pokemons/<%= item.pokemonids[i] %>">
+                  <%= item.pokemons[i] + '|'%>
+                </a>
+              </span>
+              <% } %>
+            </p>
+            <% } else { %>
+            <p>This Trainer hasn't owned any pokemon</p>
+            <% } %>
+
+            <button class="contrast">
+              <a href="" style="text-decoration: none">Delete</a>
+            </button>
+          </div>
+        </article>
+      </div>
+      <footer>&copy; This is a Top exercise 2025</footer>
+    </main>
+  </body>
+</html>

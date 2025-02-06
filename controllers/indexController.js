@@ -7,18 +7,19 @@ async function getMainPage(req, res) {
   let items = [];
   let imgClass = '';
   //base on the category -> go fetch corresponding items
-  if (category === 'Pokemons') {
+  if (category === 'pokemons') {
     items = await db.getAllPokemons();
     imgClass = 'pokemon';
   }
-  if (category === 'Trainers') {
+  if (category === 'trainers') {
     items = await db.getAllTrainers();
     imgClass = 'trainer';
   }
-  if (category === 'PokemonTypes') {
+  if (category === 'pokemonTypes') {
     items = await db.getAllPokemonTypes();
     imgClass = 'pokemon-type';
   }
+  console.log(category);
   console.log(items);
   res.render('main-page', { category, items, imgClass });
 }

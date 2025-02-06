@@ -29,8 +29,9 @@
   - [x] render them with database
 
 - [x] manage card height by adding card min -height
-- [ ] implement dark and white theme with
+- [x] implement dark and white theme switcher
+- [ ] Seperate detail views of each category: pokemonDetail, trainerDetail, pokemonTypeDetail
 - [ ] Creating add form
 - [ ] Creating edit form views
-- [ ] Creating detail views
+- [ ] fixing adding logic inside card-deck view
 - [ ] Write the next check list

@@ -3,7 +3,7 @@ const { Router } = require('express');
 const trainersController = require('../controllers/trainersController');
 
 const trainersRouter = Router();
-trainersRouter.get('/all', trainersController.getAll); // why is it an object undefined here?
+
 trainersRouter.get('/:id', trainersController.getWithId); // how to get the id?
 
 trainersRouter.post('/', trainersController.post);
