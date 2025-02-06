@@ -19,8 +19,9 @@
 
 - [ ] add views - Create all of the ‘READ’ views (i.e. view category, and view item).
 - [ ] render main page
-  - [ ] implement dark and white theme with picocss
-  - [ ] render
+- [] render a page with db.query
+- [ ] implement dark and white theme with
+- [ ] render
 - [ ] add picocss inside the views
 
 - [ ] ...
