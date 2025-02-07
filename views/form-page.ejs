@@ -18,11 +18,11 @@
       <header>
         <nav>
           <ul>
-            <li><strong>Pokemon Inventory</strong></li>
+            <li><strong> Form Page</strong></li>
           </ul>
 
           <ul>
-            <li><a href="/form">Add Items </a></li>
+            <li><a href="/">Main Page </a></li>
             <span>Theme:</span>
             <label>
               <input type="checkbox" role="switch" id="themeSwitch" />
@@ -34,7 +34,9 @@
         <form>
           <fieldset role="group">
             <select name="category" aria-label="Select a category" required>
-              <option selected disabled value="">Select a category</option>
+              <option selected disabled value="">
+                Select the adding category
+              </option>
               <option value="pokemons">Pokemons</option>
               <option value="trainers">Trainers</option>
               <option value="pokemonTypes">Pokemon Types</option>
@@ -42,8 +44,10 @@
             <input type="submit" value="Look up" />
           </fieldset>
         </form>
-        <%- include('card-deck') %>
       </div>
+      <hr />
+      <% if(formChoice) { %> <%- include(`${formChoice}-form`) %> <%} %>
+
       <footer>&copy; This is a Top exercise 2025</footer>
     </main>
   </body>

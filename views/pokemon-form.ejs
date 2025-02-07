@@ -1,0 +1,59 @@
+<section>
+  <h3>Pokemon Form</h3>
+  <form>
+    <fieldset>
+      <label>
+        Name <input name="name" placeholder="pikachu" required" />
+      </label>
+      <label>
+        Description
+        <textarea
+          name="description"
+          autocomplete="this pokemon has no description"
+          required
+        >
+       this pokemon is cute
+        </textarea>
+      </label>
+      Image
+      <label for="pokemon-image">
+        <input type="file" accept="image/*" required />
+      </label>
+    </fieldset>
+    <fieldset class="grid">
+      <label>
+        Type
+        <select
+          name="pokemonTypeId"
+          aria-label="Select the pokemon type"
+          required
+        >
+          <option selected disabled value="">Select the pokemon type</option>
+          <!-- render options based on pokemon type items -->
+          <option>Fire</option>
+          <option>Water</option>
+          <option>Plant</option>
+          <option>Ground</option>
+        </select>
+      </label>
+      <label>
+        Owner
+        <select
+          name="trainerId"
+          aria-label="Select your favorite cuisine..."
+          required
+        >
+          <option selected disabled value="">
+            Select the trainer for this pokemon
+          </option>
+          <!-- render options based on trainers table-->
+          <option>Ash</option>
+          <option>Heren</option>
+          <option>I forgot his name</option>
+          <option>Leaf</option>
+        </select>
+      </label>
+    </fieldset>
+    <input type="submit" value="Add" />
+  </form>
+</section>

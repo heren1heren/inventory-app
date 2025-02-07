@@ -1,0 +1,29 @@
+<section>
+  <h3>Pokemon Type Form</h3>
+  <form action="/pokemonTypes/">
+    <fieldset>
+      <label>
+        Name
+        <input name="name" placeholder="lighting" />
+      </label>
+      <label>
+        Description
+        <textarea name="description" required>
+        lighting type is strong, works well with water :>
+        </textarea>
+      </label>
+      Image
+      <label for="pokemon-type-image">
+        <input
+          type="file"
+          accept="image/*"
+          id="pokemon-type-image"
+          name="pokemonTypeImg"
+          required
+        />
+      </label>
+    </fieldset>
+
+    <input type="submit" value="Add " />
+  </form>
+</section>

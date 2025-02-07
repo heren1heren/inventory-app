@@ -23,4 +23,22 @@ async function getMainPage(req, res) {
   console.log(items);
   res.render('main-page', { category, items, imgClass });
 }
-module.exports = { getMainPage };
+async function getFormPage(req, res) {
+  console.log(req.query);
+  const { category } = req.query;
+
+  let formChoice;
+  //base on the category -> go fetch corresponding items
+  if (category === 'pokemons') {
+    formChoice = 'pokemon';
+  }
+  if (category === 'trainers') {
+    formChoice = 'trainer';
+  }
+  if (category === 'pokemonTypes') {
+    formChoice = 'pokemon-type';
+  }
+  console.log(category);
+  res.render('form-page', { formChoice });
+}
+module.exports = { getMainPage, getFormPage };

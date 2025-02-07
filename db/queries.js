@@ -37,7 +37,8 @@ const getAPokemonWithId = async (id) => {
           p.description, 
           p.name AS pokemonName, 
           t.name AS trainerName, 
-          pt.name AS type 
+          pt.name AS type,
+          pt.id As typeId
        FROM 
           pokemons AS p 
        INNER JOIN 

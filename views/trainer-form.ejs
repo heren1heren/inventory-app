@@ -1,0 +1,29 @@
+<section>
+  <h3>Trainer Form</h3>
+  <form>
+    <fieldset>
+      <label>
+        Name
+        <input name="trainer-name" placeholder="super cool trainer" required />
+      </label>
+      <label>
+        Description
+        <textarea name="description" required>
+        I am a super cool trainer
+        </textarea>
+      </label>
+      Image
+      <label for="trainer-image">
+        <input
+          type="file"
+          accept="image/*"
+          id="trainer-image"
+          name="trainer-image"
+          required
+        />
+      </label>
+    </fieldset>
+
+    <input type="submit" value="Add" />
+  </form>
+</section>
