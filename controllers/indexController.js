@@ -24,7 +24,6 @@ async function getMainPage(req, res) {
   res.render('main-page', { category, items, imgClass });
 }
 async function getFormPage(req, res) {
-  console.log(req.query);
   const { category } = req.query;
 
   let formChoice;
@@ -38,7 +37,7 @@ async function getFormPage(req, res) {
   if (category === 'pokemonTypes') {
     formChoice = 'pokemon-type';
   }
-  console.log(category);
+
   res.render('form-page', { formChoice });
 }
 module.exports = { getMainPage, getFormPage };

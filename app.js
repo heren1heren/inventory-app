@@ -1,9 +1,11 @@
 const express = require('express');
 const path = require('node:path');
+
 const pokemonsRouter = require('./routes/pokemonsRouter');
 const trainersRouter = require('./routes/trainersRouter');
 const indexRouter = require('./routes/indexRouter');
 const pokemonTypesRouter = require('./routes/pokemonTypesRouter');
+const { upload } = require('./storageEngine');
 
 const app = express();
 const assetsPath = path.join(__dirname, 'public'); // using images on web server here

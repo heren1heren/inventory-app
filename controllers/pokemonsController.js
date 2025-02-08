@@ -3,14 +3,14 @@ const db = require('../db/queries');
 async function getWithId(req, res) {
   const { id } = req.params;
   const item = await db.getAPokemonWithId(id);
-  console.log(item);
 
   res.render('pokemonDetail', { item });
 }
 
 async function post(req, res) {
   // req.body is not accessible
-  const { name, imgUrl, pokemonTypeId } = req.body;
+  const { name, description, pokemonTypeId, trainerId } = req.body;
+  console.log(req.file);
   console.log(req.body);
   const result = await db.insertAPokemon(name, imgUrl, pokemonTypeId);
   res.send(`${result}`);

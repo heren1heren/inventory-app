@@ -41,13 +41,20 @@
   --> [x] creating a selection form inside form page
   --> [x] creating a pokemon form inside form page
   --> [x] creating trainer, pokemon type form and using include to toggle between forms inside the form page
-  --> [ ] making each forms post properly without the image first
-  --> [ ] implement adding a file ( images) for pokemon inside my add form
-  --> [ ] making forms work with adding a file
-
-  - [ ] Creating edit form views - which is triggered by pressing a button inside each detail pages
 
 - [x] fixing type logic inside pokemonDetail
+
+# Feb 8
+
+      --> [ ] making each forms post properly without the image first
+
+      --> [ ]  render each form's selection with database
+      --> [ ] implement adding a file ( images) for pokemon inside my add form
+      --> [ ] making forms work with adding a file
+      --
+
+- [ ] Creating edit form views - which is triggered by pressing a button inside each detail pages
+
 - [ ] fixing adding logic inside card-deck view -- everytime adding a card -> the card should be appear at the top first
       -> consider using your own css grid
 - [ ] Write the next check list

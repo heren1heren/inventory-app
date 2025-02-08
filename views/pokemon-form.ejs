@@ -1,6 +1,6 @@
 <section>
   <h3>Pokemon Form</h3>
-  <form>
+  <form action="/pokemons/add" method="post" enctype="multipart/form-data">
     <fieldset>
       <label>
         Name <input name="name" placeholder="pikachu" required" />
@@ -17,7 +17,7 @@
       </label>
       Image
       <label for="pokemon-image">
-        <input type="file" accept="image/*" required />
+        <input type="file" accept="image/*" name="file" required />
       </label>
     </fieldset>
     <fieldset class="grid">
@@ -30,7 +30,7 @@
         >
           <option selected disabled value="">Select the pokemon type</option>
           <!-- render options based on pokemon type items -->
-          <option>Fire</option>
+          <option value="pokemonTypeId">Fire</option>
           <option>Water</option>
           <option>Plant</option>
           <option>Ground</option>
@@ -54,6 +54,6 @@
         </select>
       </label>
     </fieldset>
-    <input type="submit" value="Add" />
+    <button type="submit">Add</button>
   </form>
 </section>
