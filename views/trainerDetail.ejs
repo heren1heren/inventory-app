@@ -44,7 +44,7 @@
             <p><%= item.description %></p>
 
             <p>Age: <%= item.age %></p>
-            <% if (item.pokemons && item.pokemons.length > 0) { %>
+            <% if (item.pokemon_count > 0 ) { %>
             <p>
               Owned Pokemon: <% for(let i = 0; i < item.pokemons.length; i++) {
               %>
@@ -58,9 +58,18 @@
             <% } else { %>
             <p>This Trainer hasn't owned any pokemon</p>
             <% } %>
-
-            <button class="contrast">
-              <a href="" style="text-decoration: none">Delete</a>
+            <button class="primary">
+              <a
+                href="/pokemons/update/<%= item.id %>"
+                style="text-decoration: none"
+                >Update</a
+              >
+            </button>
+            <button
+              class="contrast"
+              onclick="deleteTrainer(<%=item.id%>,<%=item.pokemon_count%>)"
+            >
+              Delete
             </button>
           </div>
         </article>
@@ -69,3 +78,26 @@
     </main>
   </body>
 </html>
+<script>
+  function deleteTrainer(id, pokemonCount) {
+    console.log(pokemonCount);
+    if (pokemonCount > 0) {
+      alert('must delete their pokemon first');
+      return;
+    }
+    if (confirm('Are you sure you want to delete this Pokémon?')) {
+      fetch(`/trainers/delete/${id}`, { method: 'DELETE' })
+        .then((response) => {
+          console.log(response);
+          if (response.ok) {
+            window.location.href = '/?category=trainers';
+          } else {
+            alert('fail to delete');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  }
+</script>

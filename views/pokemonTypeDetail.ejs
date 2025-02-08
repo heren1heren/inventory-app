@@ -7,11 +7,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
     />
-    <!-- <link href="public/styles.css" rel="stylesheet" type="text/css" />  this will not work-->
-
-    <title>
-      <%= item.name[0].toUpperCase() + item.name.slice(1,item.name.length) %>
-    </title>
+    <title><%= item.name[0].toUpperCase() + item.name.slice(1) %></title>
     <script defer src="/main.js"></script>
   </head>
   <body>
@@ -20,30 +16,35 @@
         <nav>
           <ul>
             <li>
-              <strong></strong>
-                <%= item.name[0].toUpperCase() +
-                item.name.slice(1,item.name.length) %></strong
-              >
+              <strong>
+                <%= item.name[0].toUpperCase() + item.name.slice(1) %>
+              </strong>
             </li>
           </ul>
-
           <ul>
-            <a href="/" style="text-decoration: none"> Home Page</a>
-            <span>Theme:</span>
-            <label>
-              <input type="checkbox" role="switch" id="themeSwitch" />
-            </label>
+            <li>
+              <a href="/" style="text-decoration: none">Home Page</a>
+            </li>
+            <li>
+              <span>Theme:</span>
+              <label>
+                <input type="checkbox" role="switch" id="themeSwitch" />
+              </label>
+            </li>
           </ul>
         </nav>
       </header>
       <div>
         <article class="grid">
-          <img src="<%= item.imgurl %>" alt="" />
+          <img src="<%= item.imgurl %>" alt="<%= item.name %> image" />
           <div>
             <p><%= item.description %></p>
-
-            <button class="contrast">
-              <a href="" style="text-decoration: none">Delete</a>
+            <button class="primary">
+              <a
+                href="/pokemons/update/<%= item.id %>"
+                style="text-decoration: none"
+                >Update</a
+              >
             </button>
           </div>
         </article>

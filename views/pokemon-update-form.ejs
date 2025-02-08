@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <title>Pokemon Update Form</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <a href="/">home page</a>
+      </ul>
+    </nav>
+    <section>
+      <h3>Update Form for: <%= item.pokemonname %></h3>
+      <form
+        action="/pokemons/update"
+        method="put"
+        enctype="multipart/form-data"
+        itemId="<%= item.id %>"
+      >
+        <fieldset>
+          <label>
+            Name
+            <input name="name" placeholder="<%= item.pokemonname %>" required />
+          </label>
+          <label>
+            Description
+            <textarea
+              name="description"
+              autocomplete="this pokemon has no description"
+              required
+            >
+              <%= item.description %>
+            </textarea>
+          </label>
+        </fieldset>
+        <fieldset class="grid">
+          <label>
+            Type
+            <select
+              name="pokemonTypeId"
+              aria-label="Select the pokemon type"
+              required
+            >
+              <option selected disabled value="">
+                Select the pokemon type
+              </option>
+              <% for (let i = 0; i < types.length; i++) { %>
+              <option value="<%= types[i].id %>"><%= types[i].name %></option>
+              <% } %>
+            </select>
+          </label>
+          <label>
+            Owner
+            <select
+              name="trainerId"
+              aria-label="Select the trainer for this pokemon"
+              required
+            >
+              <option selected disabled value="">
+                Select the trainer for this pokemon
+              </option>
+              <% for (let i = 0; i < trainers.length; i++) { %>
+              <option value="<%= trainers[i].id %>">
+                <%= trainers[i].name %>
+              </option>
+              <% } %>
+            </select>
+          </label>
+        </fieldset>
+        <button type="submit">Update</button>
+      </form>
+    </section>
+  </body>
+
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const id = form.getAttribute('itemId');
+      console.log('formReturnId:', id);
+      const body = {
+        name: formData.get('name'),
+        description: formData.get('description'),
+        pokemonTypeId: formData.get('pokemonTypeId'),
+        trainerId: formData.get('trainerId'),
+      };
+
+      fetch(`/pokemons/update/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      })
+        .then((res) => {
+          window.location.href = '/?category=pokemons';
+        })
+        .catch((err) => {
+          console.error(err);
+          alert('An error occurred. Please try again.');
+        });
+    });
+  </script>
+</html>

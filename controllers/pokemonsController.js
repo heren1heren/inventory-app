@@ -6,32 +6,56 @@ async function getWithId(req, res) {
 
   res.render('pokemonDetail', { item });
 }
+async function getUpdateForm(req, res) {
+  const { id } = req.params;
+  const item = await db.getAPokemonWithId(id);
+  console.log(item);
+  const trainers = await db.getAllTrainers();
+  const types = await db.getAllPokemonTypes();
+  res.render('pokemon-update-form', { item, trainers, types });
+}
 
 async function post(req, res) {
   // req.body is not accessible
   const { name, description, pokemonTypeId, trainerId } = req.body;
-  console.log(req.file);
+
+  //  compute imgUrl = req.file aoesuthaoseutheoasnuc,;.uwkjq
+  const imgUrl = `/img/pokemons/${req.file.originalname}`;
   console.log(req.body);
-  const result = await db.insertAPokemon(name, imgUrl, pokemonTypeId);
-  res.send(`${result}`);
+  const result = await db.insertAPokemon(
+    name,
+    description,
+    imgUrl,
+    pokemonTypeId,
+    trainerId
+  );
+  res.redirect('/?category=pokemons');
 }
 async function updateWithId(req, res) {
-  const { name, imgUrl, pokemonTypeId } = req.body;
+  const { name, description, pokemonTypeId, trainerId } = req.body;
   const { id } = req.params;
-  const data = await db.updateAPokemonWithId(id, 'aeou', 'aoeua', 1, 3);
-  // const data = await db.updateAPokemonWithId(id, name, imgUrl, pokemonTypeId);
+  console.log(' Pokémon with ID:', req.params.id);
+  console.log('Request body:', req.body); // why is my data isn't going through?
+  await db.updateAPokemonWithId(
+    id,
+    name,
+    description,
+    pokemonTypeId,
+    trainerId
+  );
 
-  res.send(`${data}`);
+  res.redirect('/');
 }
 async function deleteWithId(req, res) {
   const { id } = req.params;
   const data = await db.deleteAPokemonWithId(id);
 
-  res.send(`${data}`);
+  res.redirect('/');
 }
 
 module.exports = {
   getWithId,
+  getUpdateForm,
   post,
   updateWithId,
   deleteWithId,

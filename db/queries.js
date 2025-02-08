@@ -49,7 +49,6 @@ const getAPokemonWithId = async (id) => {
           p.id = $1`,
       [id]
     );
-    console.log(rows);
     // Check if any rows were returned
     if (rows.length === 0) {
       throw new Error('No Pokémon found with the provided ID');
@@ -66,7 +65,6 @@ async function getATrainerWithId(id) {
     throw new Error('Invalid ID provided');
   }
   try {
-    //todo: fix the query to work with more than 1 pokemon
     const { rows } = await pool.query(
       `SELECT 
       t.name AS trainername,
@@ -74,7 +72,7 @@ async function getATrainerWithId(id) {
       t.age,
       t.imgurl,
       t.id,
-      ARRAY_AGG(p.name) AS pokemons, 
+      ARRAY_AGG(p.name) AS pokemons,  
       ARRAY_AGG(p.id) As pokemonids,
       COUNT(p.id) AS pokemon_count 
   FROM trainers AS t
@@ -83,7 +81,6 @@ async function getATrainerWithId(id) {
   GROUP BY t.id`, // without this, the query will break
       [id]
     );
-    console.log(rows);
     // Check if any rows were returned
     if (rows.length === 0) {
       throw new Error('No Pokémon found with the provided ID');
@@ -110,7 +107,6 @@ const getAPokemonTypeWithId = async (id) => {
           pt.id = $1`,
       [id]
     );
-    console.log(rows);
     // Check if any rows were returned
     if (rows.length === 0) {
       throw new Error('No Pokémon type found with the provided ID');
@@ -122,12 +118,18 @@ const getAPokemonTypeWithId = async (id) => {
     throw error; // Rethrow the error after logging it
   }
 };
-async function insertAPokemon(name, imgUrl, pokemonTypeId) {
+async function insertAPokemon(
+  name,
+  description,
+  imgUrl,
+  pokemonTypeId,
+  trainerId
+) {
   // pokemonTypeId should be determine automatically
   try {
     await pool.query(
-      'INSERT INTO Pokemons(name,imgUrl,pokemonTypeId) VALUES ($1, $2, $3)',
-      [name, imgUrl, pokemonTypeId]
+      'INSERT INTO Pokemons(name,description,imgUrl,pokemonTypeId,trainerId) VALUES ($1, $2, $3,$4,$5)',
+      [name, description, imgUrl, pokemonTypeId, trainerId]
     );
   } catch (error) {
     console.log(error);
@@ -136,11 +138,24 @@ async function insertAPokemon(name, imgUrl, pokemonTypeId) {
     return 'inserted';
   }
 }
-async function insertATrainer(name, bias, age, imgUrl) {
+async function insertATrainer(name, description, age, imgUrl) {
   try {
     await pool.query(
-      'INSERT INTO Trainers(name,bias,age,imgUrl,) VALUES ($1, $2, $3, $4)',
-      [name, bias, age, imgUrl]
+      'INSERT INTO Trainers(name,description,age,imgUrl) VALUES ($1, $2, $3, $4)',
+      [name, description, age, imgUrl]
+    );
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
+  } finally {
+    console.log(`inserted  a trainer name: ${name}`);
+  }
+}
+async function insertAPokemonType(name, description, imgUrl) {
+  try {
+    await pool.query(
+      'INSERT INTO pokemonTypes(name,description,imgUrl) VALUES ($1, $2, $3)',
+      [name, description, imgUrl]
     );
   } catch (error) {
     console.log(error);
@@ -152,25 +167,22 @@ async function insertATrainer(name, bias, age, imgUrl) {
 async function updateAPokemonWithId(
   id,
   name,
-  imgUrl,
+  description,
   pokemonTypeId,
   trainerId
 ) {
-  console.log(name, imgUrl, pokemonTypeId, trainerId, id);
   try {
-    const result = await pool.query(
+    await pool.query(
       `
       UPDATE Pokemons
       SET name = $1,
-          imgUrl = $2,
+          description = $2,
           pokemonTypeId = $3,
           trainerId = $4
       WHERE id = $5
        `,
-      [name, imgUrl, pokemonTypeId, trainerId, id]
+      [name, description, pokemonTypeId, trainerId, id]
     );
-
-    console.log(result);
   } catch (error) {
     console.log(error);
     throw new Error(error);
@@ -178,18 +190,38 @@ async function updateAPokemonWithId(
     return 'updated';
   }
 }
-async function updateATrainerWithId(id, name, bias, age, imgUrl) {
+async function updateATrainerWithId(id, name, description, age, imgUrl) {
   try {
     await pool.query(
       `
       UPDATE Trainers
       SET name = $1,
-          bias = $2,
+          description = $2,
           age = $3,
           imgUrl = $4
       WHERE id = $5
        `,
-      [name, bias, age, imgUrl, id]
+      [name, description, age, imgUrl, id]
+    );
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
+  } finally {
+    return 'updated';
+  }
+}
+async function updateAPokemonTypeWithId(id, name, description, age, imgUrl) {
+  try {
+    await pool.query(
+      `
+      UPDATE pokemonTypes
+      SET name = $1,
+          description = $2,
+         
+          imgUrl = $4
+      WHERE id = $5
+       `,
+      [name, description, imgUrl, id]
     );
   } catch (error) {
     console.log(error);
@@ -233,4 +265,6 @@ module.exports = {
 
   getAllPokemonTypes,
   getAPokemonTypeWithId,
+  insertAPokemonType,
+  updateAPokemonTypeWithId,
 };

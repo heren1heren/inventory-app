@@ -8,9 +8,10 @@ const pokemonsRouter = Router();
 pokemonsRouter.get('/:id', pokemonsController.getWithId);
 
 pokemonsRouter.post('/add', upload.single('file'), pokemonsController.post); // how to
+pokemonsRouter.get('/update/:id', pokemonsController.getUpdateForm);
 pokemonsRouter.put(
   '/update/:id',
-  upload.single('file'),
+
   pokemonsController.updateWithId
 );
 pokemonsRouter.delete('/delete/:id', pokemonsController.deleteWithId);

@@ -29,11 +29,10 @@
           required
         >
           <option selected disabled value="">Select the pokemon type</option>
-          <!-- render options based on pokemon type items -->
-          <option value="pokemonTypeId">Fire</option>
-          <option>Water</option>
-          <option>Plant</option>
-          <option>Ground</option>
+          <% for (let i = 0; i < types.length; i++) { %>
+
+          <option value="<%=types[i].id %>"><%=types[i].name %></option>
+          <%} %>
         </select>
       </label>
       <label>
@@ -46,11 +45,10 @@
           <option selected disabled value="">
             Select the trainer for this pokemon
           </option>
-          <!-- render options based on trainers table-->
-          <option>Ash</option>
-          <option>Heren</option>
-          <option>I forgot his name</option>
-          <option>Leaf</option>
+          <% for (let i = 0; i < trainers.length; i++) { %>
+
+          <option value="<%=trainers[i].id %>"><%=trainers[i].name %></option>
+          <%} %>
         </select>
       </label>
     </fieldset>

@@ -1,7 +1,6 @@
 const db = require('../db/queries');
 
 async function getMainPage(req, res) {
-  console.log(req.query);
   const { category } = req.query;
 
   let items = [];
@@ -19,16 +18,19 @@ async function getMainPage(req, res) {
     items = await db.getAllPokemonTypes();
     imgClass = 'pokemon-type';
   }
-  console.log(category);
-  console.log(items);
+
   res.render('main-page', { category, items, imgClass });
 }
 async function getFormPage(req, res) {
   const { category } = req.query;
-
+  let trainers = [];
+  let types = [];
   let formChoice;
-  //base on the category -> go fetch corresponding items
+
   if (category === 'pokemons') {
+    // need to display pokemonType and pokemonTypeId
+    trainers = await db.getAllTrainers();
+    types = await db.getAllPokemonTypes();
     formChoice = 'pokemon';
   }
   if (category === 'trainers') {
@@ -38,6 +40,6 @@ async function getFormPage(req, res) {
     formChoice = 'pokemon-type';
   }
 
-  res.render('form-page', { formChoice });
+  res.render('form-page', { formChoice, trainers, types });
 }
 module.exports = { getMainPage, getFormPage };

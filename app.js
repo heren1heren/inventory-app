@@ -11,6 +11,8 @@ const app = express();
 const assetsPath = path.join(__dirname, 'public'); // using images on web server here
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(assetsPath));
 

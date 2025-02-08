@@ -46,15 +46,19 @@
 
 # Feb 8
 
-      --> [ ] making each forms post properly without the image first
+- [x] render each form's selection with database
+- [x] making each forms post properly without the image first
 
-      --> [ ]  render each form's selection with database
-      --> [ ] implement adding a file ( images) for pokemon inside my add form
-      --> [ ] making forms work with adding a file
+- [x] implement adding a file ( images) for pokemon inside my add form
+      --> [x] making forms work with adding a file
       --
 
-- [ ] Creating edit form views - which is triggered by pressing a button inside each detail pages
+- [x] Creating edit form views - which is triggered by pressing a button inside each detail pages
 
-- [ ] fixing adding logic inside card-deck view -- everytime adding a card -> the card should be appear at the top first
-      -> consider using your own css grid
-- [ ] Write the next check list
+      --> html doesn't support put and delete routes ->
+
+      using axios and javascript script to call a route
+
+- [ ] complete the update form for pokemon
+- [ ] after completing the form -> should redirect back to the item detail page
+- [ ] replicate other forms for

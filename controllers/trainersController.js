@@ -3,29 +3,34 @@ const db = require('../db/queries');
 async function getWithId(req, res) {
   const { id } = req.params;
   const item = await db.getATrainerWithId(id);
-
   res.render('trainerDetail', { item });
+}
+async function getUpdateForm(req, res) {
+  const { id } = req.params;
+  const item = await db.getATrainerWithId(id);
+
+  res.render('trainer-update-form', { item });
 }
 
 async function post(req, res) {
-  const { name, bias, age, imgUrl } = req.body;
-  console.log(req.body);
-  const data = await db.insertATrainer(name, bias, age, imgUrl);
+  const { name, description, age } = req.body;
+  const imgUrl = `/img/trainers/${req.file.originalname}`;
 
-  res.send(`${data}`);
+  await db.insertATrainer(name, description, age, imgUrl);
+  res.redirect('/?category=trainers');
 }
 async function updateWithId(req, res) {
   const { id } = req.params;
-  const { name, bias, age, imgUrl } = req.body;
-  const data = await db.updateATrainerWithId(id, name, bias, age, imgUrl);
+  const { name, description, age, imgUrl } = req.body;
+  await db.updateATrainerWithId(id, name, description, age, imgUrl);
 
-  res.send(`${data}`);
+  res.redirect('/');
 }
 async function deleteWithId(req, res) {
   const { id } = req.params;
-  const data = await db.deleteATrainerWithId(id);
+  await db.deleteATrainerWithId(id);
 
-  res.send(`${data}`);
+  res.redirect('/');
 }
 
-module.exports = { getWithId, post, updateWithId, deleteWithId };
+module.exports = { getWithId, getUpdateForm, post, updateWithId, deleteWithId };
