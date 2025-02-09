@@ -190,18 +190,18 @@ async function updateAPokemonWithId(
     return 'updated';
   }
 }
-async function updateATrainerWithId(id, name, description, age, imgUrl) {
+async function updateATrainerWithId(id, name, description, age) {
   try {
     await pool.query(
       `
       UPDATE Trainers
       SET name = $1,
           description = $2,
-          age = $3,
-          imgUrl = $4
-      WHERE id = $5
+          age = $3
+          
+      WHERE id = $4
        `,
-      [name, description, age, imgUrl, id]
+      [name, description, age, id]
     );
   } catch (error) {
     console.log(error);
@@ -210,26 +210,7 @@ async function updateATrainerWithId(id, name, description, age, imgUrl) {
     return 'updated';
   }
 }
-async function updateAPokemonTypeWithId(id, name, description, age, imgUrl) {
-  try {
-    await pool.query(
-      `
-      UPDATE pokemonTypes
-      SET name = $1,
-          description = $2,
-         
-          imgUrl = $4
-      WHERE id = $5
-       `,
-      [name, description, imgUrl, id]
-    );
-  } catch (error) {
-    console.log(error);
-    throw new Error(error);
-  } finally {
-    return 'updated';
-  }
-}
+
 async function deleteAPokemonWithId(id) {
   try {
     await pool.query('Delete  From Pokemons Where id = $1', [id]);
@@ -266,5 +247,4 @@ module.exports = {
   getAllPokemonTypes,
   getAPokemonTypeWithId,
   insertAPokemonType,
-  updateAPokemonTypeWithId,
 };

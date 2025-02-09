@@ -5,7 +5,7 @@ const { upload } = require('../storageEngine');
 
 const trainersRouter = Router();
 
-trainersRouter.get('/:id', trainersController.getWithId); // how to get the id?
+trainersRouter.get('/:id', trainersController.getWithId);
 
 trainersRouter.post(
   '/add',

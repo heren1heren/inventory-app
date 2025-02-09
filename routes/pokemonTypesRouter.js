@@ -11,7 +11,5 @@ pokemonTypesRouter.post(
   upload.single('file'),
   pokemonTypesController.post
 );
-pokemonTypesRouter.get('/update/:id', pokemonTypesController.post);
-pokemonTypesRouter.put('/update/:id', pokemonTypesController.post);
 
 module.exports = pokemonTypesRouter;

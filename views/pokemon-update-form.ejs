@@ -12,11 +12,14 @@
   <body>
     <nav>
       <ul>
-        <a href="/">home page</a>
+        <li><a href="/">home page</a></li>
       </ul>
     </nav>
-    <section>
-      <h3>Update Form for: <%= item.pokemonname %></h3>
+    <section class="grid" style="padding: 2rem">
+      <div>
+        <h3>Update Form for: <%= item.pokemonname %></h3>
+        <img src="<%= item.imgurl %>" alt="" />
+      </div>
       <form
         action="/pokemons/update"
         method="put"

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <title>Trainer Update Form</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">home page</a></li>
+      </ul>
+    </nav>
+    <section class="grid" style="padding: 2rem">
+      <div class="column">
+        <h3>Update Form for: <%= item.trainername %></h3>
+        <img src="<%= item.imgurl %>" alt="" />
+      </div>
+      <form enctype="multipart/form-data" itemId="<%= item.id %>">
+        <fieldset>
+          <label>
+            Name
+            <input name="name" placeholder="<%= item.trainername %>" required />
+          </label>
+          <label>
+            Description
+            <textarea
+              name="description"
+              autocomplete="this trainer has no description"
+              required
+            >
+              <%= item.description %>
+            </textarea>
+          </label>
+          <label>
+            Age
+            <input
+              name="age"
+              type="number"
+              placeholder="<%= item.age %>"
+              required
+            />
+          </label>
+        </fieldset>
+
+        <button type="submit">Update</button>
+      </form>
+    </section>
+  </body>
+
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const id = form.getAttribute('itemId');
+      console.log(typeof id);
+      console.log('formReturnId:', id);
+
+      const formData = new FormData(form);
+      const body = {
+        name: formData.get('name'),
+        description: formData.get('description'),
+        age: formData.get('age'),
+      };
+      if (id) {
+        fetch(`/trainers/update/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        })
+          .then((res) => {
+            window.location.href = '/?category=trainers';
+          })
+          .catch((err) => {
+            console.error(err);
+            alert('An error occurred. Please try again.');
+          });
+      } else {
+        console.log('formReturnId:', id);
+      }
+    });
+  </script>
+</html>

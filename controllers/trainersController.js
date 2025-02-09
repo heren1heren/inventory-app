@@ -8,7 +8,7 @@ async function getWithId(req, res) {
 async function getUpdateForm(req, res) {
   const { id } = req.params;
   const item = await db.getATrainerWithId(id);
-
+  console.log(item);
   res.render('trainer-update-form', { item });
 }
 
@@ -21,8 +21,8 @@ async function post(req, res) {
 }
 async function updateWithId(req, res) {
   const { id } = req.params;
-  const { name, description, age, imgUrl } = req.body;
-  await db.updateATrainerWithId(id, name, description, age, imgUrl);
+  const { name, description, age } = req.body;
+  await db.updateATrainerWithId(id, name, description, age);
 
   res.redirect('/');
 }

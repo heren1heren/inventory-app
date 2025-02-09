@@ -17,13 +17,6 @@ async function post(req, res) {
   await db.insertAPokemonType(name, description, imgUrl);
   res.redirect('/?category=pokemonTypes');
 }
-async function updateWithId(req, res) {
-  const { id } = req.params;
-  const { name, bias, age, imgUrl } = req.body;
-  const data = await db.updateAPokemonTypeWithId(id, name, bias, age, imgUrl);
-
-  res.send(`${data}`);
-}
 
 module.exports = {
   getWithId,

@@ -34,7 +34,7 @@
 
 # Feb 7:
 
-- [ ] Creating add form feature:
+- [x] Creating add form feature:
       a form that contain a selection to let user choose which category to add an item to. If the selection was selected ->
       display a coresponding form for user
 
@@ -59,6 +59,9 @@
 
       using axios and javascript script to call a route
 
-- [ ] complete the update form for pokemon
-- [ ] after completing the form -> should redirect back to the item detail page
-- [ ] replicate other forms for
+- [x] complete the update form for pokemon
+
+# Feb 9
+
+- [] testing each interactions
+- [] research how to public them . hint: refer to the past lessons
