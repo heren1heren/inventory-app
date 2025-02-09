@@ -57,7 +57,11 @@ async function main() {
   console.log('seeding...');
   // connection process
   const client = new Client({
-    connectionString: `postgresql://${process.env.USER}:${process.env.PASSWORD}@localhost:5432/top_users`,
+    // populated for the local database
+    connectionString: `postgresql://${process.env.LOCAL_DB_USER}:${process.env.LOCAL_DB_PASSWORD}@localhost:5432/top_users`,
+
+    // populated for the hosting database:
+    // connectionString: process.env.DATABASE_PUBLIC_URL,
   });
 
   await client.connect();
